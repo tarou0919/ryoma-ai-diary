@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx astro *)",
+      "Bash(curl -s http://localhost:4321/)"
+    ]
+  }
+}
