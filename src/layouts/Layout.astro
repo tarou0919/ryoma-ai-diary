@@ -9,6 +9,9 @@ interface Props {
 const { title, description = SITE_DESCRIPTION } = Astro.props;
 const pageTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
 const currentYear = new Date().getFullYear();
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/ogp-card.png', Astro.site).href;
 ---
 
 <!doctype html>
@@ -21,6 +24,18 @@ const currentYear = new Date().getFullYear();
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
     <header class="site-header">
